@@ -60,16 +60,18 @@ test_html = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Add Teacher</title>
 
-    <style>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Pixelify+Sans:wght@400;500;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background: #f4f6f9;
+            font-family: 'DM Sans', sans-serif;
+            background: #e8f4ff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -78,18 +80,20 @@ test_html = """<!DOCTYPE html>
         }
 
         .container {
-            background: white;
+            background: #f5fbff;
             width: 100%;
             max-width: 700px;
             padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            border: 1.5px solid #c0dcf0;
         }
 
         h2 {
             text-align: center;
             margin-bottom: 25px;
-            color: #333;
+            color: #2a6090;
+            font-family: 'Pixelify Sans', monospace;
+            letter-spacing: 2px;
         }
 
         .form-group {
@@ -98,9 +102,13 @@ test_html = """<!DOCTYPE html>
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #444;
+            margin-bottom: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #3a7090;
+            font-family: 'Pixelify Sans', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         input,
@@ -108,9 +116,21 @@ test_html = """<!DOCTYPE html>
         select {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid #b0d0ee;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
+            background: #eef7ff;
+            color: #2a5070;
+            font-family: 'DM Sans', sans-serif;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3a7090;
+            background: #fff;
         }
 
         textarea {
@@ -124,24 +144,34 @@ test_html = """<!DOCTYPE html>
             gap: 10px;
         }
 
+        .checkbox-group label {
+            text-transform: none;
+            font-size: 13px;
+            letter-spacing: 0;
+            margin-bottom: 0;
+        }
+
         .checkbox-group input {
             width: auto;
         }
 
         button {
             width: 100%;
-            background: #007bff;
-            color: white;
-            border: none;
+            background: #d8eef8;
+            color: #2a5070;
+            border: 1.5px solid #b0d0ee;
             padding: 14px;
-            font-size: 16px;
+            font-size: 14px;
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
+            font-family: 'Pixelify Sans', monospace;
+            letter-spacing: 1px;
         }
 
         button:hover {
-            background: #0056b3;
+            background: #c0dff5;
+            color: #1a4060;
         }
 
         .row {
@@ -153,10 +183,24 @@ test_html = """<!DOCTYPE html>
             flex: 1;
         }
 
+        p a {
+            font-size: 11px;
+            font-weight: 600;
+            color: #3a7090;
+            text-decoration: none;
+            background: #d8eef8;
+            padding: 5px 13px;
+            border-radius: 20px;
+            border: 1px solid #b0d0ee;
+            font-family: 'Pixelify Sans', monospace;
+            letter-spacing: 0.5px;
+            margin-right: 6px;
+        }
+
+        p a:hover { background: #c0dff5; }
+
         @media (max-width: 600px) {
-            .row {
-                flex-direction: column;
-            }
+            .row { flex-direction: column; }
         }
     </style>
 </head>
@@ -261,9 +305,9 @@ test_html = """<!DOCTYPE html>
 
 </form>
 
-<p>
-    <a href="/teacher/view-teachers">View All Teachers</a>
-    </p>
+<div style="margin-top: 16px; text-align: center;">
+    <a href="/teacher/view-teachers" style="font-size: 11px; font-weight: 600; color: #3a7090; text-decoration: none; background: #d8eef8; padding: 5px 13px; border-radius: 20px; border: 1px solid #b0d0ee; font-family: 'Pixelify Sans', monospace; letter-spacing: 0.5px;">View All Teachers</a>
+</div>
     
 
 <script>
@@ -356,11 +400,12 @@ def view_teachers(db: Session = Depends(get_db)):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Teachers List</title>
 
-        <style>
+<style>
+            @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Pixelify+Sans:wght@400;500;700&display=swap');
 
             body {
-                font-family: Arial, sans-serif;
-                background: #f4f6f9;
+                font-family: 'DM Sans', sans-serif;
+                background: #e8f4ff;
                 margin: 0;
                 padding: 20px;
             }
@@ -368,44 +413,76 @@ def view_teachers(db: Session = Depends(get_db)):
             h1 {
                 text-align: center;
                 margin-bottom: 25px;
-                color: #333;
+                color: #2a6090;
+                font-family: 'Pixelify Sans', monospace;
+                letter-spacing: 2px;
             }
+
+            p a {
+                font-size: 11px;
+                font-weight: 600;
+                color: #3a7090;
+                text-decoration: none;
+                background: #d8eef8;
+                padding: 5px 13px;
+                border-radius: 20px;
+                border: 1px solid #b0d0ee;
+                font-family: 'Pixelify Sans', monospace;
+                letter-spacing: 0.5px;
+                margin-right: 6px;
+            }
+
+            p a:hover { background: #c0dff5; }
 
             table {
                 width: 100%;
                 border-collapse: collapse;
-                background: white;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-                border-radius: 10px;
+                background: #f5fbff;
+                border: 1.5px solid #c0dcf0;
+                border-radius: 14px;
                 overflow: hidden;
             }
 
             th {
-                background: #007bff;
-                color: white;
+                background: #d8eef8;
+                color: #2a5070;
                 padding: 14px;
                 text-align: left;
+                font-family: 'Pixelify Sans', monospace;
+                font-size: 11px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                border-bottom: 1px dashed #b0d0ee;
             }
 
             td {
                 padding: 12px;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #e8f4fc;
+                color: #2a5070;
+                font-size: 13px;
             }
 
-            tr:hover {
-                background: #f1f1f1;
-            }
+            tr:hover td { background: #eef7ff; }
 
             .active {
-                color: green;
-                font-weight: bold;
+                background: #e0f5ea;
+                color: #1a6040;
+                border: 1px solid #9adab8;
+                font-size: 11px;
+                padding: 2px 9px;
+                border-radius: 20px;
+                font-family: 'Pixelify Sans', monospace;
             }
 
             .inactive {
-                color: red;
-                font-weight: bold;
+                background: #e8f0f8;
+                color: #5070a0;
+                border: 1px solid #b0c8e0;
+                font-size: 11px;
+                padding: 2px 9px;
+                border-radius: 20px;
+                font-family: 'Pixelify Sans', monospace;
             }
-
         </style>
 
     </head>
