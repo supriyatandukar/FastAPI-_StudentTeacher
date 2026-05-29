@@ -343,7 +343,7 @@ document
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(teacherData)  #python ma load garya jastai ho, js lai json ma covert gareko
+                    body: JSON.stringify(teacherData)  //python ma load garya jastai ho, js lai json ma covert gareko
                 }
             );
 
@@ -358,7 +358,7 @@ document
             }
             else {
                 alert("Error creating teacher");
-                console.log(result);  #python ko print jastai ho, js ma console.log le print garcha
+                console.log(result);  //python ko print jastai ho, js ma console.log le print garcha
             }
 
         }
